@@ -76,7 +76,7 @@
         });
         
         function geoCode() {
-            map.zoom = 17;
+            map.setZoom(17);
             var geocoder = new AMap.Geocoder({});
             var address  = document.getElementById('address').value;
             geocoder.getLocation(address, function(status, result) {
