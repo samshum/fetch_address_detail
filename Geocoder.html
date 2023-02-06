@@ -43,6 +43,10 @@
             <div class="input-item-prepend"><span class="input-item-text">街道/乡镇</span></div>
             <input id='street' disabled type="text">
     </div>
+    <div class="input-item">
+            <div class="input-item-prepend"><span class="input-item-text">Geo</span></div>
+            <input id='geo' disabled type="text">
+    </div>
     <input id="geo" type="button" class="btn" value="查询一下" />
     
     <div>
@@ -90,6 +94,7 @@
                             document.getElementById('city').value = result.regeocode.addressComponent.city;
                             document.getElementById('district').value = result.regeocode.addressComponent.district;
                             document.getElementById('street').value = street;
+                            document.getElementById('geo').value = lnglat.toString();
                             
                         }else{
                             log.error('根据地址查询地址失败')
