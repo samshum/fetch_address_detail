@@ -45,7 +45,7 @@
     </div>
     <div class="input-item">
             <div class="input-item-prepend"><span class="input-item-text">Geo</span></div>
-            <input id='geo' disabled type="text">
+            <input id='geovalue' disabled type="text">
     </div>
     <input id="geo" type="button" class="btn" value="查询一下" />
     
@@ -94,7 +94,7 @@
                             document.getElementById('city').value = result.regeocode.addressComponent.city;
                             document.getElementById('district').value = result.regeocode.addressComponent.district;
                             document.getElementById('street').value = street;
-                            document.getElementById('geo').value = lnglat.toString();
+                            document.getElementById('geovalue').value = lnglat;
                             
                         }else{
                             log.error('根据地址查询地址失败')
