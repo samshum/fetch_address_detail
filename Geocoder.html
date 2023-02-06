@@ -77,30 +77,33 @@
         
         function geoCode() {
             map.setZoom(17);
-            var geocoder = new AMap.Geocoder({});
-            var address  = document.getElementById('address').value;
-            geocoder.getLocation(address, function(status, result) {
-                if (status === 'complete'&&result.geocodes.length) {
-                    var lnglat = result.geocodes[0].location
-                    geocoder.getAddress(lnglat, function(status, result) {
-                        if (status === 'complete'&&result.regeocode) {
-                            var street = result.regeocode.addressComponent.township
-                            document.getElementById('province').value = result.regeocode.addressComponent.province;
-                            document.getElementById('city').value = result.regeocode.addressComponent.city;
-                            document.getElementById('district').value = result.regeocode.addressComponent.district;
-                            document.getElementById('street').value = street;
-                            document.getElementById('geovalue').value = lnglat;
-                            
-                        }else{
-                            log.error('根据地址查询地址失败')
-                        }
-                    });
-                    map.setCenter(lnglat);
-                    positionPicker.start(map.getBounds().getCenter())
-                }else{
-                    log.error('根据地址查询位置失败');
-                }
-            });
+            var t = setTimeout(()=>{
+                var geocoder = new AMap.Geocoder({});
+                var address  = document.getElementById('address').value;
+                geocoder.getLocation(address, function(status, result) {
+                    if (status === 'complete'&&result.geocodes.length) {
+                        var lnglat = result.geocodes[0].location
+                        geocoder.getAddress(lnglat, function(status, result) {
+                            if (status === 'complete'&&result.regeocode) {
+                                var street = result.regeocode.addressComponent.township
+                                document.getElementById('province').value = result.regeocode.addressComponent.province;
+                                document.getElementById('city').value = result.regeocode.addressComponent.city;
+                                document.getElementById('district').value = result.regeocode.addressComponent.district;
+                                document.getElementById('street').value = street;
+                                document.getElementById('geovalue').value = lnglat;
+
+                            }else{
+                                log.error('根据地址查询地址失败')
+                            }
+                        });
+                        map.setCenter(lnglat);
+                        positionPicker.start(map.getBounds().getCenter())
+                    }else{
+                        log.error('根据地址查询位置失败');
+                    }
+                });
+                clearTimeout(t);
+            }, 100);
         }
 
         positionPicker.on('success', function(positionResult) {
