@@ -62,7 +62,7 @@
         
     AMapUI.loadUI(['misc/PositionPicker'], function(PositionPicker) {
         var map = new AMap.Map('container', {
-            zoom: 16,
+            zoom: 17,
             scrollWheel: true,
             resizeEnable: true
         })
@@ -70,18 +70,15 @@
             mode: 'dragMap',
             map: map
         });
-
         
         var auto = new AMap.Autocomplete({
             input: "address"
         });
-
         
         function geoCode() {
-            var geocoder = new AMap.Geocoder({
-            });
+            map.zoom = 17;
+            var geocoder = new AMap.Geocoder({});
             var address  = document.getElementById('address').value;
-            map.zoom = 18;
             geocoder.getLocation(address, function(status, result) {
                 if (status === 'complete'&&result.geocodes.length) {
                     var lnglat = result.geocodes[0].location
@@ -140,7 +137,6 @@
             }
             return true;
         })
-
         
         positionPicker.start();
         map.panBy(0, 1);
